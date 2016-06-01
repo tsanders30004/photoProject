@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8">
+     <title>Photo Caffeine</title>
+     <link href="animate.css" rel="stylesheet">
+     <script src="jquery.js"></script>
+     <!-- <script src="js/photos.js"></script> -->
+     <style>
+     * {
+          box-sizing: border-box;
+     }
+     body {
+          font-family: Verdana;
+     }
+     #filmstrip {
+          /*border: 1px solid black;*/
+          width: 90%;
+          /*height: 20%;*/
+          margin: auto;
+     }
+     #bigPhoto {
+          margin: auto;
+          clear: both;
+     }
+     .cell {
+          float: left;
+     }
+     .thumbnail {
+          width: 100%;
+          padding: 7.5%;
+     }
+     .rollover {
+          border: 1px solid black;
+     }
+     #bigPhotoContainer {
+          /*box-shadow: 10px 10px 10px #DDDDDD;*/
+          width: 90%;
+          /*height: 80%;*/
+          margin: auto;
+          border: 1px solid blue;
+          /*margin-top: 5%;*/
+     }
+     .centerPhoto {
+          text-align: center;
+          padding-top: 5%;
+     }
+     .photoShadow {
+          box-shadow: 10px 10px 5px #DDDDDD;
+          background-color: #AAAAAA;
+          padding: 3%;
+          border-radius: 10px;
+     }
+     .caption {
+          text-align: center;
+     }
+     </style>
+
+<script>
+"use strict";
+
+function Photo(theFilename, theCaption) {
+     this.filename   = theFilename;
+     this.caption  = theCaption;
+};
+
+var Photos = [
+     new Photo('DSC_5667.jpg', 'Roman Warrior'),
+     new Photo('DSC_5749.jpg', 'Green Arrow'),
+     new Photo('DSC_5753.jpg', 'Elf'),
+     new Photo('DSC_5758.jpg', 'Ginger Terrestrial'),
+     new Photo('DSC_5768.jpg', 'La Femme'),
+     new Photo('DSC_5793.jpg', 'Harry Potter'),
+     new Photo('DSC_5800.jpg', 'Indian Princess'),
+     new Photo('DSC_5803.jpg', 'Super Heroine'),
+     new Photo('DSC_7234.jpg', 'Living Dead'),
+     new Photo('DSC_7397.jpg', 'Mad as a Hatter')
+];
+
+function buildFilmstrip(photoList){
+     var filmstrip = '';
+     var i;
+     var padding = 0;    /* one percent */
+     var cellWidth = 100 / photoList.length - 2 * padding;
+     var doubleQuote = '"';
+     var html1 = '<div class=' + doubleQuote + 'cell' + doubleQuote + ' style = ' + doubleQuote;
+     var html2 = '';
+     var html3 = doubleQuote + '>';
+     var html4 = '<img class=' + doubleQuote + 'thumbnail' + doubleQuote + ' src=' + doubleQuote + 'photos/';
+     var html5 = '';
+     // var html6 = doubleQuote + 'alt=' + doubleQuote;
+     var html7 = '</div>';
+     var imgHtml = '';
+
+     for (i = 0; i < photoList.length; i++) {
+          html2 = 'width: ' + cellWidth + '%;';
+          html5 = photoList[i].filename + doubleQuote +'>';
+          imgHtml += html1 + html2 + html3 + html4 + html5 + html7;
+          console.log(imgHtml);
+     };
+     return imgHtml;
+};
+
+$(document).ready(function(){
+     /* build the filmstrip */
+     var filmstripHtml = buildFilmstrip(Photos);
+     $('#filmstrip').html(filmstripHtml);
+
+     /* change appearance of thumbnail when user hovers over it */
+     $('.thumbnail').mouseover(function(){                          /* when you click a thumbnail, show it in the big area below */
+          console.log('hover occurred')
+          $(this).addClass('rollover');
+     });
+
+     /* restore appearance of thumbnail when user un-hovers over it */
+     $('.thumbnail').mouseout(function(){                          /* when you click a thumbnail, show it in the big area below */
+          console.log('hover occurred')
+          $(this).removeClass('rollover');
+     });
+
+     $('.thumbnail').click(function(){
+          var doubleQuote = '"';
+          var bigPhotoHtml = '<img id=' + doubleQuote + 'bigPhoto' + doubleQuote + ' class=' + doubleQuote + 'animated bounceInDown photoShadow'
+               + doubleQuote + ' src=' + doubleQuote + $(this).attr("src") + doubleQuote +'>';
+          $('#bigPhoto').html('<p class=' + doubleQuote + 'centerPhoto' + doubleQuote + '>' + bigPhotoHtml + '</p>');
+          // $('#bigPhoto').append('<p class=' + doubleQuote + 'caption' + doubleQuote + '>caption here</p>');
+          $('#bigPhoto').append('<p class=' + doubleQuote + 'caption' + doubleQuote + '>' + $(this).caption + '</p>');
+          debugger;
+     });
+});
+
+</script>
+
+
+</head>
+<body>
+     <div class="container">
+          <div id='filmstrip'>
+               <!-- added by JS -->
+          </div>    <!-- filmstrip -->
+          <div id='bigPhoto'>
+               <!-- added by JS -->
+          </div>
+     </div>    <!-- container -->
+</body>
+</html>

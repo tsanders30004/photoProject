@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8">
+     <title>Photo Caffeine</title>
+     <link href="../animate.css" rel="stylesheet">
+     <script src="../jquery.js"></script>
+     <!-- <script src="js/photos.js"></script> -->
+     <style>
+     * {
+          box-sizing: border-box;
+     }
+     body {
+          font-family: Verdana;
+     }
+     #cell1 {
+          position: absolute;
+          top: 12.5%;
+          left: 12.5%;
+          width: 25%;
+          border: 1px dotted black;
+     }
+     #cell2 {
+          position: absolute;
+          top: 62.5%;
+          left: 62.5%;
+          width: 25%;
+          border: 1px dotted black;
+     }
+     #main {
+          position: absolute;
+          top: 25%;
+          left: 25%;
+          width: 50%;
+          border: 1px dotted black;
+     }
+     .photo {
+          width: 100%;
+          padding: 5%;
+          background-color: #AAAAAA;
+          border-radius: 2em;
+     }
+     </style>
+
+<script>
+"use strict";
+
+function Photo(theFilename, theCaption) {
+     this.filename   = theFilename;
+     this.caption  = theCaption;
+};
+
+var Photos = [
+     new Photo('DSC_5667.jpg', 'Roman Warrior'),
+     new Photo('DSC_5749.jpg', 'Green Arrow'),
+     new Photo('DSC_5753.jpg', 'Elf'),
+     new Photo('DSC_5758.jpg', 'Ginger Terrestrial'),
+     new Photo('DSC_5768.jpg', 'La Femme'),
+     new Photo('DSC_5793.jpg', 'Harry Potter'),
+     new Photo('DSC_5800.jpg', 'Indian Princess'),
+     new Photo('DSC_5803.jpg', 'Super Heroine'),
+     new Photo('DSC_7234.jpg', 'Living Dead'),
+     new Photo('DSC_7397.jpg', 'Mad as a Hatter')
+];
+
+$(document).ready(function(){
+     // $('#main').html('');
+
+});
+
+</script>
+
+
+</head>
+<body>
+     <div class="container">
+          <div id='cell1'>
+               <img class="photo" src="photos/DSC_5749.jpg" alt="Green Arrow">
+          </div>
+          <div id='cell2'>
+               <img class="photo" src="photos/DSC_5768.jpg" alt="La Femme">
+          </div>
+          <div id='main'>
+               <img class="photo" src="photos/DSC_5758.jpg" alt="Extra Terrestrial">
+          </div>
+     </div>    <!-- container -->
+</body>
+</html>
